@@ -1,0 +1,237 @@
+{% load static %}
+
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение OpenSeadragon -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.0/openseadragon.min.js"></script>
+
+    <!-- Стили для страницы -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #openseadragon {
+            width: 100%;
+            height: 80vh;
+        }
+    </style>
+<style type="text/css">.vue-slider-dot{position:absolute;-webkit-transition:all 0s;transition:all 0s;z-index:5}.vue-slider-dot:focus{outline:none}.vue-slider-dot-tooltip{position:absolute;visibility:hidden}.vue-slider-dot-hover:hover .vue-slider-dot-tooltip,.vue-slider-dot-tooltip-show{visibility:visible}.vue-slider-dot-tooltip-top{top:-10px;left:50%;-webkit-transform:translate(-50%,-100%);transform:translate(-50%,-100%)}.vue-slider-dot-tooltip-bottom{bottom:-10px;left:50%;-webkit-transform:translate(-50%,100%);transform:translate(-50%,100%)}.vue-slider-dot-tooltip-left{left:-10px;top:50%;-webkit-transform:translate(-100%,-50%);transform:translate(-100%,-50%)}.vue-slider-dot-tooltip-right{right:-10px;top:50%;-webkit-transform:translate(100%,-50%);transform:translate(100%,-50%)}</style><style type="text/css">.vue-slider-marks{position:relative;width:100%;height:100%}.vue-slider-mark{position:absolute;z-index:1}.vue-slider-ltr .vue-slider-mark,.vue-slider-rtl .vue-slider-mark{width:0;height:100%;top:50%}.vue-slider-ltr .vue-slider-mark-step,.vue-slider-rtl .vue-slider-mark-step{top:0}.vue-slider-ltr .vue-slider-mark-label,.vue-slider-rtl .vue-slider-mark-label{top:100%;margin-top:10px}.vue-slider-ltr .vue-slider-mark{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.vue-slider-ltr .vue-slider-mark-step{left:0}.vue-slider-ltr .vue-slider-mark-label{left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.vue-slider-rtl .vue-slider-mark{-webkit-transform:translate(50%,-50%);transform:translate(50%,-50%)}.vue-slider-rtl .vue-slider-mark-step{right:0}.vue-slider-rtl .vue-slider-mark-label{right:50%;-webkit-transform:translateX(50%);transform:translateX(50%)}.vue-slider-btt .vue-slider-mark,.vue-slider-ttb .vue-slider-mark{width:100%;height:0;left:50%}.vue-slider-btt .vue-slider-mark-step,.vue-slider-ttb .vue-slider-mark-step{left:0}.vue-slider-btt .vue-slider-mark-label,.vue-slider-ttb .vue-slider-mark-label{left:100%;margin-left:10px}.vue-slider-btt .vue-slider-mark{-webkit-transform:translate(-50%,50%);transform:translate(-50%,50%)}.vue-slider-btt .vue-slider-mark-step{top:0}.vue-slider-btt .vue-slider-mark-label{top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.vue-slider-ttb .vue-slider-mark{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.vue-slider-ttb .vue-slider-mark-step{bottom:0}.vue-slider-ttb .vue-slider-mark-label{bottom:50%;-webkit-transform:translateY(50%);transform:translateY(50%)}.vue-slider-mark-label,.vue-slider-mark-step{position:absolute}</style><style type="text/css">.vue-slider{position:relative;-webkit-box-sizing:content-box;box-sizing:content-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:block;-webkit-tap-highlight-color:rgba(0,0,0,0)}.vue-slider-rail{position:relative;width:100%;height:100%;-webkit-transition-property:width,height,left,right,top,bottom;transition-property:width,height,left,right,top,bottom}.vue-slider-process{position:absolute;z-index:1}</style><style>@import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/styles.css");</style></head>
+<body style="width:100%">
+
+    <!-- Область карты -->
+    <header> 
+        <div style="width: 150px; height: 50px; margin-left: auto; margin-right: auto;">
+            <button id="addImageBtn" style="width: 150px; height: 50px;">Добавить изображение</button>
+        </div>
+    </header>
+
+    <div id="target-element" style="width: 100%; height: 80vh; border: 1px solid black; position: relative; overflow: hidden;">
+        <img id="map" src="https://sun9-38.userapi.com/impg/qkagdOrN18byDu-_8xaRhGxmowO17YPxxw4s8Q/XBge_hK6wBo.jpg?size=372x254&amp;quality=96&amp;sign=ade34313cf31d6bfbc3da731331b4a76&amp;type=album" style="position: absolute; top: 285px; left: 500px; transform: translate(-50%, -50%); width: auto; height: 100%;">
+    <img src="https://static.thenounproject.com/png/2271538-200.png" data-offset-x="200" data-offset-y="100" style="position: absolute; height: 50px; width: 50px; left: 188px; top: 112px;"><img src="https://static.thenounproject.com/png/2271538-200.png" data-offset-x="150" data-offset-y="150" style="position: absolute; height: 50px; width: 50px; left: 138px; top: 162px;"></div>
+    <img src="{% static 'images/x.png' %}" alt="x.png">
+
+
+    
+
+</body><div class="troywell-avia"></div><div class="troywell-caa"></div></html>
+
+<script>
+    const markers = [];
+        
+    // Функция для создания нового изображения с указанными координатами внутри targetElement
+    function createImageAtPosition(x, y) {
+        const targetElement = document.getElementById('target-element');
+        const marker = document.createElement('img');
+        marker.src = 'https://static.thenounproject.com/png/2271538-200.png';
+        marker.style.position = 'absolute';
+        marker.style.height = '50px';
+        marker.style.width = '50px';
+        marker.style.left = x + 'px';
+        marker.style.top = y + 'px';
+        marker.dataset.offsetX = x;
+        marker.dataset.offsetY = y;
+        targetElement.appendChild(marker); // Добавляем точку в targetElement
+
+        // Добавляем маркер в массив markers
+        markers.push(marker);
+
+        // Возвращаем маркер для возможности дальнейшего управления
+        return marker;
+}
+
+    // Обработчик для вызова функции при загрузке страницы
+    window.onload = function() {
+        createImageAtPosition(200, 100);
+        createImageAtPosition(150, 150);
+    };
+
+    const targetElement = document.getElementById('target-element');
+    const image = document.getElementById('map');
+
+    image.onload = function() {
+        const imageWidth = image.width;
+        const imageHeight = image.height;
+        const targetWidth = targetElement.offsetWidth;
+        const targetHeight = targetElement.offsetHeight;
+
+        // Проверяем соотношение сторон изображения и области target-element
+        const aspectRatio = imageWidth / imageHeight;
+        const targetAspectRatio = targetWidth / targetHeight;
+
+        if (aspectRatio > targetAspectRatio) {
+            // Изображение шире, масштабируем его по ширине target-element
+            image.style.width = '100%';
+            image.style.height = 'auto';
+        } else {
+            // Изображение уже высокое, масштабируем его по высоте target-element
+            image.style.width = 'auto';
+            image.style.height = '100%';
+        }
+    };
+
+    function add_marker(event) {
+        const targetElement = document.getElementById('target-element');
+        const n_marker = document.createElement('img');
+        n_marker.src = 'https://psv4.userapi.com/c909328/u174464326/docs/d20/579e73728e37/geometka.png?extra=HZL58I80C6tm9h3iTK-TlNm0x1A_bRriRFhTlx_cAMTE6mLfJXfsXIwp5_pjEs4jnc609ymDpL73m1QJNFnNOqWpRnEiQUiChV8nw3ejadjQ_Qzxk1X-ti_8VHD3zJ_-jOLVYTSwXPDK0lsZ11GrcgUy';
+        n_marker.style.position = 'absolute';
+        n_marker.style.height = '50px';
+        n_marker.style.width = '50px';
+        const x = event.clientX;
+        const y = event.clientY;
+        n_marker.style.left = (x - 25) + 'px';
+        n_marker.style.top = (y - 100) + 'px';
+        targetElement.appendChild(n_marker);
+    }
+
+    document.getElementById('addImageBtn').addEventListener('click', () => {
+        targetElement.addEventListener('click', add_marker);
+    });
+
+    let isDragging = false;
+    let startX, startY;
+    let startLeft, startTop;
+
+    image.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        startX = event.clientX;
+        startY = event.clientY;
+        startLeft = image.offsetLeft;
+        startTop = image.offsetTop;
+        event.preventDefault(); // Отменяем выделение текста
+    });
+
+    targetElement.addEventListener('mousemove', (event) => {
+        if (isDragging) {
+            const deltaX = event.clientX - startX;
+            const deltaY = event.clientY - startY;
+            const newImageLeft = startLeft + deltaX;
+            const newImageTop = startTop + deltaY;
+            image.style.left = newImageLeft + 'px';
+            image.style.top = newImageTop + 'px';
+            markers.forEach(marker => {
+                // Получаем текущие координаты маркера
+                const markerLeft = parseFloat(marker.style.left || 0);
+                const markerTop = parseFloat(marker.style.top || 0);
+                // Обновляем позицию маркера относительно изображения "map"
+                marker.style.left = (markerLeft + deltaX) + 'px';
+                marker.style.top = (markerTop + deltaY) + 'px';
+            });
+            // Обновляем начальные координаты для следующего смещения
+            startX = event.clientX;
+            startY = event.clientY;
+            startLeft = newImageLeft;
+            startTop = newImageTop;
+}
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+
+    {% comment %} targetElement.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        const scaleFactor = event.deltaY > 0 ? 0.9 : 1.1; // Определяем направление масштабирования
+        image.style.width = image.offsetWidth * scaleFactor + 'px';
+        image.style.height = image.offsetHeight * scaleFactor + 'px';
+    }); {% endcomment %}
+
+
+    let id = 1;
+    let x = 0;
+    let y = 0;
+
+    async function sendData() {
+        const data = {
+            ids: '1',
+            x: '2',
+            y: '3',
+            pic: '4',
+        };
+
+        const response = await fetch('/set-coords/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken') // Добавьте CSRF токен
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.text();
+        console.log(result);
+    }
+
+    async function getCoords() {
+        try {
+            const response = await fetch('/get-coords/', {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken') // Получаем CSRF токен
+                }
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+    
+            const result = await response.json(); // Получаем JSON данные
+            console.log(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+</script>
