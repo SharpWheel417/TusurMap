@@ -55,7 +55,7 @@ ROOT_URLCONF = 'TsMaps.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'D:/Projects/TsMaps/TsMaps/templates'),],
+        'DIRS': [os.path.join(BASE_DIR, f'{BASE_DIR}/TsMaps/templates/'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,7 +71,7 @@ TEMPLATES = [
 import os
 
 STATIC_URL = '/TsMaps/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'D:/Projects/TsMaps/TsMaps/static/')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, f'{BASE_DIR}/TsMaps/static/')]
 
 
 
