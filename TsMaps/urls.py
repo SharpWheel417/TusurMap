@@ -24,4 +24,5 @@ urlpatterns = [
     path('',  views.home, name='home'),
     path('set-coords/',  views.send_data, name='set-coords'),
     path('get-coords/',  views.get_coords, name='get-coords'),
+    path('img-mark1/',  views.get_mark, name='img-mark1'),
 ]

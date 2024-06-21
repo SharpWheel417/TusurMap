@@ -37,3 +37,13 @@ def get_coords(request):
         'data': rows,
     }
     return JsonResponse(data)
+
+
+from django.http import HttpResponse
+from django.views.static import serve
+from django.conf import settings
+
+def get_mark(request):
+    # This function will return an image
+    image_path = 'images/marks/x.png'  # Replace this with the actual path to your image
+    return serve(request, document_root=settings.MEDIA_ROOT, path=image_path)
