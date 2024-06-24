@@ -74,10 +74,17 @@
 <script src="{% static 'scripts/net/send.js' %}"></script>
 <script src="{% static 'scripts/net/get.js' %}"></script>
 <script src="{% static 'scripts/pages.js' %}"></script>
+<script src="{% static 'scripts/popupImage.js' %}"></script>
 
 <script>
     const mark1 = "{% static 'images/marks/x.png' %}";
-    const mark2 = "{% static 'images/marks/xd.jpeg' %}";
+    const mark2 = "{% static 'images/marks/x2.png' %}";
+    const mark3 = "{% static 'images/marks/x3.png' %}";
+    const mark4 = "{% static 'images/marks/x4.png' %}";
+    const cabinets412 = "{% static 'images/cabinets/412.jpeg' %}";
+    const cabinets413 = "{% static 'images/cabinets/413.jpeg' %}";
+    const cabinets414 = "{% static 'images/cabinets/414.jpeg' %}";
+    const cabinets415 = "{% static 'images/cabinets/415.jpeg' %}";
     // Обработчик для вызова функции при загрузке страницы
     window.onload = function () {
         activeMap('pageFirst-target-element', 'pageFirst-map')
